@@ -1,0 +1,32 @@
+﻿@model HomeWork2.Models.Product
+
+@{
+    ViewBag.Title = "Product Details";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<h2>Product Details</h2>
+
+<div>
+    <h3>@Model.Name</h3>
+    <p><strong>Price:</strong> @Model.Price:C</p>
+    <p><strong>Description:</strong> @Model.Description</p>
+    <p><strong>Category ID:</strong> @Model.CategoryId</p>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

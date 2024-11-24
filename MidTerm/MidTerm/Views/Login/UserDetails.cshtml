@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "User Details";
+}
+
+<h2>User Details</h2>
+
+<div class="user-details-container">
+    <h4>Basic Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Full Name:</dt>
+        <dd>@ViewBag.LoggedInUser.UserInfo.FullName</dd>
+
+        <dt>UserDB:</dt>
+        <dd>@ViewBag.LoggedInUser.UserInfo.UserDB</dd>
+
+        <dt>Bio:</dt>
+        <dd>@ViewBag.LoggedInUser.UserInfo.Bio</dd>
+
+        <dt>Disability:</dt>
+        <dd>@ViewBag.LoggedInUser.UserInfo.Disability</dd>
+
+        <dt>Gender:</dt>
+        <dd>@ViewBag.LoggedInUser.UserInfo.Gender</dd>
+    </dl>
+
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mobile Number:</dt>
+        <dd>@ViewBag.LoggedInUser.UserContact.MobileNumber</dd>
+
+        <dt>Email:</dt>
+        <dd>@ViewBag.LoggedInUser.UserContact.Email</dd>
+
+        <dt>Emergency Contact:</dt>
+        <dd>@ViewBag.LoggedInUser.UserContact.EmergencyContact</dd>
+
+        <dt>Address:</dt>
+        <dd>@ViewBag.LoggedInUser.UserContact.Address</dd>
+    </dl>
+</div>
+
+<div class="action-links">
+    @Html.ActionLink("Logout", "Logout", "Login", new { @class = "btn btn-danger" })
+</div>
+
+<style>
+    .user-details-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    .dl-horizontal dt {
+        font-weight: bold;
+        float: left;
+        width: 150px;
+        clear: left;
+        text-align: left;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 160px;
+        padding-bottom: 10px;
+    }
+
+    .action-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        margin: 0 5px;
+    }
+</style>

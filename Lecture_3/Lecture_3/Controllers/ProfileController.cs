@@ -63,6 +63,7 @@ namespace Lecture_3.Controllers
                 return Register();
             }
         }
+
         public ActionResult Register()
         {
             return View();
@@ -85,11 +86,5 @@ namespace Lecture_3.Controllers
             }
         }
 
-        public ActionResult Logout()
-        {
-            loggedInUser = null;
-            Session["loggedInUser"] = null;
-            return RedirectToAction("Login");
-        }
     }
 }

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<HomeWork2.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<h2>@ViewBag.Header</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@if (TempData["FilterResult"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["FilterResult"]
+    </div>
+}
+
+<!-- Optional: Display Categories -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewData["Categories"] != null)
+        {
+            foreach (var category in (IEnumerable<HomeWork2.Models.Category>)ViewData["Categories"])
+            {
+                <tr>
+                    <td>@category.Name</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Filter", "Product", FormMethod.Get))
+{
+    <p>Price Range: </p>
+    <label>Min:</label>
+    <input type="number" name="minPrice" step="0.01" />
+    <label>Max:</label>
+    <input type="number" name="maxPrice" step="0.01" />
+    <button type="submit">Filter</button>
+
+}
+
+
+<h3>
+    @Html.ActionLink("Show Electronics", "Filter", new { categoryId = 1 })
+</h3>
+
+<!-- Product Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CategoryId)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.CategoryId)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { productId = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
